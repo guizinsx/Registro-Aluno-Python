@@ -51,7 +51,7 @@ frame_tabela.grid(row=3, column=0, pady=0, padx=10, sticky=NSEW, columnspan=5)
 # -------- Trabalhando no frame logo -------
 global imagem, imagem_string, l_imagem
 
-app_lg = Image.open("logo.png")
+app_lg = Image.open("images/logo.png")
 app_lg = app_lg.resize((50,50))
 app_lg = ImageTk.PhotoImage(app_lg)
 app_logo = Label(frame_logo, image=app_lg, text="  Sistema de Registro de Alunos", width=850, compound=LEFT, anchor=NW, font=('Verdana 15'), bg=co6, fg=co1)

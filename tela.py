@@ -97,4 +97,58 @@ c_curso = ttk.Combobox(frame_details, width=20, font=('Ivy 8 bold'), justify='ce
 c_curso['values'] = (cursos)
 c_curso.place(x=224, y=160)
 
+# ------ funcao para escolher imagem ------
+
+def escolher_imagem():
+    global imagem, imagem_string, l_imagem
+
+    imagem = fd.askopenfilename()
+    imagem_string = imagem
+
+    imagem = Image.open(imagem)
+    imagem = imagem.resize((130,130))
+    imagem = ImageTk.PhotoImage(imagem)
+    l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
+    l_imagem.place(x=390, y=10)
+
+    botao_carregar['text'] = 'Trocar de foto'
+
+botao_carregar = Button(frame_details, command=escolher_imagem, text='Carregar Foto'.upper(), width=20, compound=CENTER, anchor=CENTER, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co1, fg=co0)
+botao_carregar.place(x=390, y=160)
+
+# ----- tabelas aluno -----
+def mostrar_alunos():
+    list_header = ['id', 'Nome', 'email', 'Telefone', 'Sexo', 'Data', 'Endereco', 'Curso']
+
+    df_list = []
+
+    tree_aluno = ttk.Treeview(frame_tabela, selectmode='extended', columns=list_header, show="headings")
+
+    # vertical scrollbat
+    vsb = ttk.Scrollbar(frame_tabela, orient='vertical', command=tree_aluno.yview)
+    #horizontal scrollbar
+    hsb = ttk.Scrollbar(frame_tabela, orient='horizontal', command=tree_aluno.xview)
+
+    tree_aluno.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+    tree_aluno.grid(column=0, row=1, sticky='nsew')
+    vsb.grid(column=1, row=1, sticky='ns')
+    hsb.grid(column=0, row=2, sticky='ew')
+    frame_tabela.grid_columnconfigure(0, weight=12)
+
+    hd = ['nw', 'nw', 'nw', 'center',  'center',  'center',  'center',  'center', 'center' ]
+    h = [40, 150, 150, 70, 70, 70,120, 100, 100]
+    n=0
+
+    for col in list_header:
+        tree_aluno.heading(col, text=col.title(), anchor=NW)
+        # ajustar a width da coluna com header string
+        tree_aluno.column(col, width=h[n], anchor=hd[n])
+
+        n+=1
+    
+    for item in df_list:
+        tree_aluno.insert('', 'end', values=item)
+
+
+
 janela.mainloop()

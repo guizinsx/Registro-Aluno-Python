@@ -164,9 +164,20 @@ frame_procurar_id.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
 
 l_nome = Label(frame_procurar_id, text="Procurar aluno [Insira o ID]", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
 l_nome.grid(row=0, column=0, pady=10, padx=0, sticky=NSEW)
+entrada_procurar = Entry(frame_procurar_id, width=5, justify='center', relief='solid', font=('Ivy 10'))
+entrada_procurar.grid(row=1, column=0, pady=10, padx=0, sticky=NSEW)
 
 botao_alterar = Button(frame_procurar_id, text='Procurar', width=9,  anchor=CENTER, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co1, fg=co0)
 botao_alterar.grid(row=1, column=1, pady=10, padx=0, sticky=NSEW)
+
+
+# --------- Botoes ------------
+app_img_adicionar = Image.open("images/adicionar.png")
+app_img_adicionar = app_img_adicionar.resize((25,25))
+app_img_adicionar = ImageTk.PhotoImage(app_img_adicionar)
+app_adicionar = Button(frame_botoes, image=app_img_adicionar, relief=GROOVE,  text=' Adicionar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
+app_adicionar.grid(row=1, column=0, pady=5, padx=10, sticky=NSEW)
+
 
 
 

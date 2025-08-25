@@ -79,5 +79,22 @@ c_sexo = ttk.Combobox(frame_details, width=7, font=('Ivy 8 bold'), justify='cent
 c_sexo['values'] = ('M', 'F', 'Outro')
 c_sexo.place(x=130, y=160)
 
+l_data_nascimento = Label(frame_details, text="Data de nascimento: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_data_nascimento.place(x=220, y=10)
+data_nascimento = DateEntry(frame_details, width=18, justify='center', background='darkblue', foreground='white', borderwidht=2, year=2025)
+data_nascimento.place(x=224, y=40)
+
+l_endereco = Label(frame_details, text="Endereco: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_endereco.place(x=220, y=70)
+e_endereco = Entry(frame_details, width=20, justify='left', relief='solid')
+e_endereco.place(x=224, y=100)
+
+cursos = ["Engenharia", "Medicina", "Sociais"]
+
+l_curso = Label(frame_details, text="Cursos: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_curso.place(x=220, y=130)
+c_curso = ttk.Combobox(frame_details, width=20, font=('Ivy 8 bold'), justify='center')
+c_curso['values'] = (cursos)
+c_curso.place(x=224, y=160)
 
 janela.mainloop()

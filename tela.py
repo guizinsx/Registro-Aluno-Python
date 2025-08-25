@@ -57,6 +57,14 @@ app_lg = ImageTk.PhotoImage(app_lg)
 app_logo = Label(frame_logo, image=app_lg, text="  Sistema de Registro de Alunos", width=850, compound=LEFT, anchor=NW, font=('Verdana 15'), bg=co6, fg=co1)
 app_logo.place(x=5, y=0)
 
+# -------- abrindo a imagem --------
+
+imagem = Image.open('images/logo.png')
+imagem = imagem.resize((130,130))
+imagem = ImageTk.PhotoImage(imagem)
+l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
+l_imagem.place(x=390, y=10)
+
 # ---- Criando os campos de entrada -----
 l_nome = Label(frame_details, text="Nome: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
 l_nome.place(x=4, y=10)
@@ -150,5 +158,20 @@ def mostrar_alunos():
         tree_aluno.insert('', 'end', values=item)
 
 
+# ----- procurar aluno ---------
+frame_procurar_id = Frame(frame_botoes, width=40, height=55, bg=co1, relief=RAISED)
+frame_procurar_id.grid(row=0, column=0, pady=10, padx=10, sticky=NSEW)
+
+l_nome = Label(frame_procurar_id, text="Procurar aluno [Insira o ID]", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_nome.grid(row=0, column=0, pady=10, padx=0, sticky=NSEW)
+
+botao_alterar = Button(frame_procurar_id, text='Procurar', width=9,  anchor=CENTER, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co1, fg=co0)
+botao_alterar.grid(row=1, column=1, pady=10, padx=0, sticky=NSEW)
+
+
+
+
+# ----- chamar a tabela ------
+mostrar_alunos()
 
 janela.mainloop()

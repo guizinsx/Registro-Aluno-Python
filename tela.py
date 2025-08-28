@@ -179,6 +179,24 @@ app_adicionar = Button(frame_botoes, image=app_img_adicionar, relief=GROOVE,  te
 app_adicionar.grid(row=1, column=0, pady=5, padx=10, sticky=NSEW)
 
 
+app_img_atualizar = Image.open("images/update.png")
+app_img_atualizar = app_img_atualizar.resize((25,25))
+app_img_atualizar = ImageTk.PhotoImage(app_img_atualizar)
+app_atualizar = Button(frame_botoes, image=app_img_atualizar, relief=GROOVE,  text=' Atualizar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
+app_atualizar.grid(row=2, column=0, pady=5, padx=10, sticky=NSEW)
+
+
+app_img_deletar = Image.open("images/delete_icon.png")
+app_img_deletar = app_img_deletar.resize((25,25))
+app_img_deletar = ImageTk.PhotoImage(app_img_deletar)
+app_deletar = Button(frame_botoes, image=app_img_deletar, relief=GROOVE,  text=' Deletar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
+app_deletar.grid(row=3, column=0, pady=5, padx=10, sticky=NSEW)
+
+# ------ linha separatoria -------
+l_linha = Label(frame_botoes, relief=GROOVE,  text='h', width=1 , height=123, anchor=NW, font=('Ivy 1'), bg=co1, fg=co2)
+l_linha.place(x=240, y=15)
+
+
 
 
 

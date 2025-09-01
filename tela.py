@@ -185,7 +185,7 @@ def atualizar():
     c_curso.delete(0, END)
 
     # -------- abrindo a imagem --------
-    imagem = Image.open('images/logo.png')
+    imagem = Image.open('logo.png')
     imagem = imagem.resize((130,130))
     imagem = ImageTk.PhotoImage(imagem)
 
@@ -195,6 +195,37 @@ def atualizar():
     #mostrando os valores na tabela
     mostrar_alunos()
 
+#funcao deletar
+def deletar():
+    global imagem, imagem_stringm, l_imagem
+
+    # obtendo o id
+    id_aluno = int(entrada_procurar.get())
+
+    # deletando o aluno a partir do id
+    sistema_de_registro.delete_student(id_aluno)
+
+    # limpando os campos de entrada
+    entrada_nome.delete(0, END)
+    entrada_email.delete(0, END)
+    entrada_telefone.delete(0, END)
+    c_sexo.delete(0, END)
+    data_nascimento.delete(0, END)
+    entrada_endereco.delete(0, END)
+    c_curso.delete(0, END)
+
+    entrada_procurar.delete(0, END)
+
+    # -------- abrindo a imagem --------
+    imagem = Image.open('images/logo.png')
+    imagem = imagem.resize((130,130))
+    imagem = ImageTk.PhotoImage(imagem)
+
+    l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
+    l_imagem.place(x=390, y=10)
+
+    #mostrando os valores na tabela
+    mostrar_alunos()
 # ---- Criando os campos de entrada -----
 l_nome = Label(frame_details, text="Nome: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
 l_nome.place(x=4, y=10)
@@ -319,7 +350,7 @@ app_atualizar.grid(row=2, column=0, pady=5, padx=10, sticky=NSEW)
 app_img_deletar = Image.open("images/delete_icon.png")
 app_img_deletar = app_img_deletar.resize((25,25))
 app_img_deletar = ImageTk.PhotoImage(app_img_deletar)
-app_deletar = Button(frame_botoes, image=app_img_deletar, relief=GROOVE,  text=' Deletar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
+app_deletar = Button(frame_botoes, command=deletar, image=app_img_deletar, relief=GROOVE,  text=' Deletar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
 app_deletar.grid(row=3, column=0, pady=5, padx=10, sticky=NSEW)
 
 # ------ linha separatoria -------

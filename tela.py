@@ -146,6 +146,55 @@ def procurar():
     l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
     l_imagem.place(x=390, y=10)
 
+# funcao de atualizar
+def atualizar():
+    global imagem, imagem_stringm, l_imagem
+
+    # obtendo o id
+    id_aluno = int(entrada_procurar.get())
+
+
+    #obtendo os valores
+    nome = entrada_nome.get()
+    email = entrada_email.get()
+    tel = entrada_telefone.get()
+    sexo = c_sexo.get()
+    data = data_nascimento.get()
+    endereco = entrada_endereco.get()
+    curso = c_curso.get()
+    img = imagem_string
+
+    lista = [nome, email, tel, sexo, data, endereco, curso, img, id_aluno]
+
+    # verificando se a lista contem valores vazios
+    for i in lista:
+        if i =='':
+            messagebox.showerror("Erro", 'Preencha todos os campos ')
+            return 
+        
+    # registrando os valores 
+    sistema_de_registro.update_student (lista)
+
+    # limpando os campos de entrada
+    entrada_nome.delete(0, END)
+    entrada_email.delete(0, END)
+    entrada_telefone.delete(0, END)
+    c_sexo.delete(0, END)
+    data_nascimento.delete(0, END)
+    entrada_endereco.delete(0, END)
+    c_curso.delete(0, END)
+
+    # -------- abrindo a imagem --------
+    imagem = Image.open('images/logo.png')
+    imagem = imagem.resize((130,130))
+    imagem = ImageTk.PhotoImage(imagem)
+
+    l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
+    l_imagem.place(x=390, y=10)
+
+    #mostrando os valores na tabela
+    mostrar_alunos()
+
 # ---- Criando os campos de entrada -----
 l_nome = Label(frame_details, text="Nome: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
 l_nome.place(x=4, y=10)
@@ -263,7 +312,7 @@ app_adicionar.grid(row=1, column=0, pady=5, padx=10, sticky=NSEW)
 app_img_atualizar = Image.open("images/update.png")
 app_img_atualizar = app_img_atualizar.resize((25,25))
 app_img_atualizar = ImageTk.PhotoImage(app_img_atualizar)
-app_atualizar = Button(frame_botoes, image=app_img_atualizar, relief=GROOVE,  text=' Atualizar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
+app_atualizar = Button(frame_botoes, command=atualizar, image=app_img_atualizar, relief=GROOVE,  text=' Atualizar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
 app_atualizar.grid(row=2, column=0, pady=5, padx=10, sticky=NSEW)
 
 

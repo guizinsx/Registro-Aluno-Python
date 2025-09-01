@@ -285,39 +285,48 @@ def escolher_imagem():
 botao_carregar = Button(frame_details, command=escolher_imagem, text='Carregar Foto'.upper(), width=20, compound=CENTER, anchor=CENTER, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co1, fg=co0)
 botao_carregar.place(x=390, y=160)
 
-# ----- tabelas aluno -----
-def mostrar_alunos():
-    list_header = ['id', 'Nome', 'email', 'Telefone', 'Sexo', 'Data', 'Endereco', 'Curso']
 
+
+# ----- tabelas aluno ----- 
+def mostrar_alunos():
+    # Limpa a tabela antiga antes de desenhar uma nova para evitar sobreposição
+    for widget in frame_tabela.winfo_children():
+        widget.destroy()
+
+    list_header = ['Id', 'Nome', 'Email', 'Telefone', 'Sexo', 'Data Nasc', 'Endereco', 'Curso']
     df_list = sistema_de_registro.view_all_students()
 
-    tree_aluno = ttk.Treeview(frame_tabela, selectmode='extended', columns=list_header, show="headings")
-
-    # vertical scrollbat
-    vsb = ttk.Scrollbar(frame_tabela, orient='vertical', command=tree_aluno.yview)
-    #horizontal scrollbar
-    hsb = ttk.Scrollbar(frame_tabela, orient='horizontal', command=tree_aluno.xview)
-
-    tree_aluno.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
-    tree_aluno.grid(column=0, row=1, sticky='nsew')
-    vsb.grid(column=1, row=1, sticky='ns')
-    hsb.grid(column=0, row=2, sticky='ew')
-    frame_tabela.grid_columnconfigure(0, weight=12)
-
-    hd = ['nw', 'nw', 'nw', 'center',  'center',  'center',  'center',  'center', 'center' ]
-    h = [40, 150, 150, 70, 70, 70,120, 100, 100]
-    n=0
-
-    for col in list_header:
-        tree_aluno.heading(col, text=col.title(), anchor=NW)
-        # ajustar a width da coluna com header string
-        tree_aluno.column(col, width=h[n], anchor=hd[n])
-
-        n+=1
+    # Criando a Treeview (tabela)
+    tree_aluno = ttk.Treeview(frame_tabela, columns=list_header, show="headings")
     
+    # Criando as barras de rolagem
+    vsb = ttk.Scrollbar(frame_tabela, orient='vertical', command=tree_aluno.yview)
+    hsb = ttk.Scrollbar(frame_tabela, orient='horizontal', command=tree_aluno.xview) #  BARRA HORIZONTAL ADICIONADA
+
+    # Configurando o comando de rolagem da Treeview para as barras
+    tree_aluno.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+
+    # Posicionando os widgets na tela com grid
+    tree_aluno.grid(column=0, row=0, sticky='nsew')
+    vsb.grid(column=1, row=0, sticky='ns')
+    hsb.grid(column=0, row=1, sticky='ew', columnspan=2) #  POSICIONANDO A BARRA HORIZONTAL
+
+    # Configurando o frame da tabela para expandir corretamente
+    frame_tabela.grid_rowconfigure(0, weight=1)
+    frame_tabela.grid_columnconfigure(0, weight=1)
+
+    # Definindo a LARGURA FIXA de cada coluna
+    # Ajuste esses valores conforme sua preferência
+    larguras = [40, 120, 120, 100, 38, 70, 150, 140] 
+
+    # Configurando os cabeçalhos e a largura das colunas
+    for i, col in enumerate(list_header):
+        tree_aluno.heading(col, text=col, anchor=NW)
+        tree_aluno.column(col, width=larguras[i], anchor=NW, stretch=NO) # Usamos stretch=NO para que a coluna não se encolha
+
+    # Inserindo os dados na tabela
     for item in df_list:
         tree_aluno.insert('', 'end', values=item)
-
 
 # ----- procurar aluno ---------
 frame_procurar_id = Frame(frame_botoes, width=40, height=55, bg=co1, relief=RAISED)

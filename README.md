@@ -40,11 +40,11 @@ Permite escolher imagens para cada aluno, redimensionando-as automaticamente par
 ## Estrutura do Projeto
 
 A estrutura básica do projeto é a seguinte:
-├── images/ # Ícones e logo
-├── main.py # Lógica de dados (CRUD com SQLite)
-├── tela.py # Interface Tkinter principal
-├── README.md # Este arquivo
-└── requirements.txt # Dependências opcionais
+- ├── images/ # Ícones e logo
+- ├── main.py # Lógica de dados (CRUD com SQLite)
+- ├── tela.py # Interface Tkinter principal
+- ├── README.md # Este arquivo
+- └── requirements.txt # Dependências opcionais
 
 
 ---
@@ -75,7 +75,7 @@ Este projeto foi criado como exercício de aprendizado em Python e Tkinter, base
 
 ## Contato
 
-Desenvolvido por **Guilherme Orlandi**
-Meu github: https://github.com/guizinsx
+- Desenvolvido por **Guilherme Orlandi**
+- Meu github: https://github.com/guizinsx
 
 

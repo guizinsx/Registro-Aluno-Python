@@ -32,8 +32,7 @@ class Sistema_de_Registro:
         self.c.execute("SELECT * FROM estudantes")
         dados = self.c.fetchall()
 
-        for i in dados:
-            print(f'ID: {i[0]} | Nome: {i[1]} | Email: {i[2]} | Telefone: {i[3]} | Sexo: {i[4]} | Data de Nascimento: {i[5]} | Endereco: {i[6]} | Curso: {i[7]} | Imagem: {i[8]}')
+        return dados
     
     def search_student(self, id):
         self.c.execute("SELECT * FROM estudantes WHERE id=?", (id,))

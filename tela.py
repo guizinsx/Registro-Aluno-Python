@@ -11,6 +11,9 @@ from PIL import ImageTk, Image
 from tkcalendar import Calendar, DateEntry
 from datetime import date
 
+#  ----- importando main -------
+from main import *
+
 # cores
 co0 = "#2e2d2b"  # Preta
 co1 = "#feffff"  # Branca   
@@ -64,6 +67,46 @@ imagem = imagem.resize((130,130))
 imagem = ImageTk.PhotoImage(imagem)
 l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
 l_imagem.place(x=390, y=10)
+
+
+
+# ------- Criando funcoes para CRUD --------
+# funcao adicionar
+def adicionar():
+    global imagem, imagem_stringm, l_imagem
+
+    #obtendo os valores
+    nome = entrada_nome.get()
+    email = entrada_email.get()
+    tel = entrada_telefone.get()
+    sexo = c_sexo.get()
+    data = data_nascimento.get()
+    endereco = entrada_endereco.get()
+    curso = c_curso.get()
+    img = imagem_string
+
+    lista = [nome, email, tel, sexo, data, endereco, curso, img]
+
+    # verificando se a lista contem valores vazios
+    for i in lista:
+        if i =='':
+            messagebox.showerror("Erro", 'Preencha todos os campos ')
+            return 
+        
+    # registrando os valores 
+    sistema_de_registro.register_student(lista)
+
+    # limpando os campos de entrada
+    entrada_nome.delete(0, END)
+    entrada_email.delete(0, END)
+    entrada_telefone.delete(0, END)
+    c_sexo.delete(0, END)
+    data_nascimento.delete(0, END)
+    entrada_endereco.delete(0, END)
+    c_curso.delete(0, END)
+
+    #mostrando os valores na tabela
+    mostrar_alunos()
 
 # ---- Criando os campos de entrada -----
 l_nome = Label(frame_details, text="Nome: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
@@ -128,7 +171,7 @@ botao_carregar.place(x=390, y=160)
 def mostrar_alunos():
     list_header = ['id', 'Nome', 'email', 'Telefone', 'Sexo', 'Data', 'Endereco', 'Curso']
 
-    df_list = []
+    df_list = sistema_de_registro.view_all_students()
 
     tree_aluno = ttk.Treeview(frame_tabela, selectmode='extended', columns=list_header, show="headings")
 
@@ -175,7 +218,7 @@ botao_alterar.grid(row=1, column=1, pady=10, padx=0, sticky=NSEW)
 app_img_adicionar = Image.open("images/adicionar.png")
 app_img_adicionar = app_img_adicionar.resize((25,25))
 app_img_adicionar = ImageTk.PhotoImage(app_img_adicionar)
-app_adicionar = Button(frame_botoes, image=app_img_adicionar, relief=GROOVE,  text=' Adicionar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
+app_adicionar = Button(frame_botoes, command=adicionar,  image=app_img_adicionar, relief=GROOVE,  text=' Adicionar', width=100,compound=LEFT, overrelief=RIDGE, font=('Ivy 11'), bg=co1, fg=co0)
 app_adicionar.grid(row=1, column=0, pady=5, padx=10, sticky=NSEW)
 
 

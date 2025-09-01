@@ -38,7 +38,7 @@ class Sistema_de_Registro:
         self.c.execute("SELECT * FROM estudantes WHERE id=?", (id,))
         dados = self.c.fetchone()
         
-        print(f'ID: {dados[0]} | Nome: {dados[1]} | Email: {dados[2]} | Telefone: {dados[3]} | Sexo: {dados[4]} | Data de Nascimento: {dados[5]} | Endereco: {dados[6]} | Curso: {dados[7]} | Imagem: {dados[8]}')
+        return dados
 
 
     def update_student(self, novos_valores):

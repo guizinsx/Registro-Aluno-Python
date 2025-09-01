@@ -108,6 +108,44 @@ def adicionar():
     #mostrando os valores na tabela
     mostrar_alunos()
 
+#funcao procurar aluno
+def procurar():
+    global imagem, imagem_stringm, l_imagem
+
+    # obtendo o id
+    id_aluno = int(entrada_procurar.get())
+
+    # procurando o aluno a partir do id
+    dados = sistema_de_registro.search_student(id_aluno)
+
+    # limpando os campos de entrada
+    entrada_nome.delete(0, END)
+    entrada_email.delete(0, END)
+    entrada_telefone.delete(0, END)
+    c_sexo.delete(0, END)
+    data_nascimento.delete(0, END)
+    entrada_endereco.delete(0, END)
+    c_curso.delete(0, END)
+
+    # inserir os valores nos campos de entrada
+    entrada_nome.insert(END, dados[1])
+    entrada_email.insert(END, dados[2])
+    entrada_telefone.insert(END, dados[3])
+    c_sexo.insert(END, dados[4])
+    data_nascimento.insert(END, dados[5])
+    entrada_endereco.insert(END, dados[6])
+    c_curso.insert(END, dados[7])
+
+    imagem = dados[8]
+    imagem_string = imagem
+
+    imagem = Image.open(imagem)
+    imagem = imagem.resize((130,130))
+    imagem = ImageTk.PhotoImage(imagem)
+
+    l_imagem = Label(frame_details, image=imagem, bg=co1, fg=co4)
+    l_imagem.place(x=390, y=10)
+
 # ---- Criando os campos de entrada -----
 l_nome = Label(frame_details, text="Nome: ", anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
 l_nome.place(x=4, y=10)
@@ -210,8 +248,8 @@ l_nome.grid(row=0, column=0, pady=10, padx=0, sticky=NSEW)
 entrada_procurar = Entry(frame_procurar_id, width=5, justify='center', relief='solid', font=('Ivy 10'))
 entrada_procurar.grid(row=1, column=0, pady=10, padx=0, sticky=NSEW)
 
-botao_alterar = Button(frame_procurar_id, text='Procurar', width=9,  anchor=CENTER, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co1, fg=co0)
-botao_alterar.grid(row=1, column=1, pady=10, padx=0, sticky=NSEW)
+botao_procurar = Button(frame_procurar_id,command=procurar, text='Procurar', width=9,  anchor=CENTER, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co1, fg=co0)
+botao_procurar.grid(row=1, column=1, pady=10, padx=0, sticky=NSEW)
 
 
 # --------- Botoes ------------

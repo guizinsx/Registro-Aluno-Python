@@ -70,7 +70,7 @@ l_imagem.place(x=390, y=10)
 # ------- Criando funcoes para CRUD --------
 # funcao adicionar
 def adicionar():
-    global imagem, imagem_stringm, l_imagem
+    global imagem, imagem_string, l_imagem
 
     #obtendo os valores
     nome = entrada_nome.get()
@@ -107,7 +107,7 @@ def adicionar():
 
 #funcao procurar aluno
 def procurar():
-    global imagem, imagem_stringm, l_imagem
+    global imagem, imagem_string, l_imagem
 
     # obtendo o id
     id_aluno = int(entrada_procurar.get())
@@ -145,7 +145,7 @@ def procurar():
 
 # funcao de atualizar
 def atualizar():
-    global imagem, imagem_stringm, l_imagem
+    global imagem, imagem_string, l_imagem
 
     # obtendo o id
     id_aluno = int(entrada_procurar.get())
@@ -182,7 +182,7 @@ def atualizar():
     c_curso.delete(0, END)
 
     # -------- abrindo a imagem --------
-    imagem = Image.open('logo.png')
+    imagem = Image.open('images/logo.png')
     imagem = imagem.resize((130,130))
     imagem = ImageTk.PhotoImage(imagem)
 
@@ -194,7 +194,7 @@ def atualizar():
 
 #funcao deletar
 def deletar():
-    global imagem, imagem_stringm, l_imagem
+    global imagem, imagem_string, l_imagem
 
     # obtendo o id
     id_aluno = int(entrada_procurar.get())
